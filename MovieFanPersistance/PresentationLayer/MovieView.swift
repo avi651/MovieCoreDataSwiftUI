@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct MovieView: View {
+    
+    @StateObject var moviesViewModel = MoviesViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            Section(header: Text("Popular Movies")) {
+                ForEach(moviesViewModel.movies) { movie in
+                    NavigationLink(destination: DetailMovieView(movie: movie)) {
+                        MovieCardView(movie: movie)
+                    }
+                }
+            }
+        }.navigationTitle("Movies").onAppear(){
+            moviesViewModel.loadData()
+        }
     }
 }
 

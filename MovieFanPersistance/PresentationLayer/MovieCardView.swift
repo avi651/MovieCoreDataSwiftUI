@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct MovieCardView: View {
+    
+    var movie: Movie
+    @ObservedObject var imageLoader = CacheNetworkImage()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            HStack {
+                MovieBackdropCard(movie: movie).frame(width: 100, height: 50)
+                Text(movie.title)
+                    .font(.headline)
+                    .multilineTextAlignment(.leading)
+            }
+        }
+        .padding()
     }
 }
 
 struct MovieCardView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCardView()
+        MovieCardView(movie: Movie.stubbedMovie)
     }
 }

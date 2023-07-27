@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol APIServiceProtocol {
+    func fetchMovie(completion: @escaping(Result<MovieResult, APIError>) -> Void)
+}
